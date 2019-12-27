@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Increment the quantity variable
+     * This method is called when the plus button is clicked.
      */
     public void incrementQuantity(View view) {
         numberOfCoffees++;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Decrement the quantity variable
+     * This method is called when the minus button is clicked.
      */
     public  void decrementQuantity(View view) {
         if(numberOfCoffees >= 0) {
