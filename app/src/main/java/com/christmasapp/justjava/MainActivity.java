@@ -24,9 +24,30 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        String priceMessage = "Total: $" + (numberOfCoffees * 5);
-        priceMessage += "\nThank you!";
-        displayMessage(priceMessage);
+        int price = calculatePrice();
+        String orderSummary = createOrderSummary(price);
+        displayMessage(orderSummary);
+    }
+
+    /**
+     * Calculates the price of the order based on the current quantity.
+     *
+     * @return the price
+     */
+    private int calculatePrice() {
+        return numberOfCoffees * 5;
+    }
+
+    /**
+     * Create order summary message based on the price.
+     * @param price of the order
+     * @return text summary
+     */
+    private String createOrderSummary(int price) {
+        return "Name: Ioan\n" +
+                "Quantity: " + numberOfCoffees +
+                "\nTotal: $" + price +
+                "\nThank you!";
     }
 
     /**
@@ -34,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void incrementQuantity(View view) {
         numberOfCoffees++;
-        display(numberOfCoffees);
+        displayQuantity(numberOfCoffees);
     }
 
     /**
@@ -43,14 +64,14 @@ public class MainActivity extends AppCompatActivity {
     public void decrementQuantity(View view) {
         if (numberOfCoffees > 1) {
             numberOfCoffees--;
-            display(numberOfCoffees);
+            displayQuantity(numberOfCoffees);
         }
     }
 
     /**
      * This method displays the given quantity value on the screen.
      */
-    private void display(int number) {
+    private void displayQuantity(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
