@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
@@ -12,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private static int numberOfCoffees = 2;
+    private static int numberOfCoffees = 99;
     private static boolean hasWhippedCream = false;
     private static boolean hasChocolate = false;
 
@@ -75,6 +76,13 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void incrementQuantity(View view) {
+        if (numberOfCoffees == 100) {
+            // Show an error message as a toast
+            Toast.makeText(this, "You cannot have more than 100 coffee", Toast.LENGTH_SHORT).show();
+            // Exit
+            return;
+        }
+
         numberOfCoffees++;
         displayQuantity(numberOfCoffees);
     }
@@ -85,10 +93,16 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void decrementQuantity(View view) {
-        if (numberOfCoffees > 1) {
-            numberOfCoffees--;
-            displayQuantity(numberOfCoffees);
+        if (numberOfCoffees == 1) {
+            // Show an error message as a toast
+            Toast.makeText(this, "You cannot have more than 1 coffee", Toast.LENGTH_SHORT).show();
+            // Exit
+            return;
         }
+
+        numberOfCoffees--;
+        displayQuantity(numberOfCoffees);
+
     }
 
     /**
