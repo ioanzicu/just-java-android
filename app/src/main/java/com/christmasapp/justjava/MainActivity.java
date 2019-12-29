@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method is called when the minus button is clicked.
+     * @param view
      */
     public void decrementQuantity(View view) {
         if (numberOfCoffees > 1) {
@@ -71,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method displays the given quantity value on the screen.
+     * Displays the given quantity value on the screen.
+     * @param number
      */
     private void displayQuantity(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
@@ -79,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method displays the given text on the screen.
+     * Displays the given text on the screen.
+     * @param message
      */
     private void displayMessage(String message) {
         TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
@@ -91,11 +94,6 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void addWhippedCream(View view) {
-        boolean checked = ((CheckBox) view).isChecked();
-        if (checked) {
-            hasWhippedCream = true;
-        } else {
-            hasWhippedCream = false;
-        }
+        hasWhippedCream = ((CheckBox) view).isChecked();
     }
 }
