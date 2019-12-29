@@ -40,7 +40,17 @@ public class MainActivity extends AppCompatActivity {
      * @return the price
      */
     private int calculatePrice() {
-        return numberOfCoffees * 5;
+        int basePrice = 5;
+        // Add $1 if the user wants whipped cream
+        if (hasWhippedCream) {
+            basePrice += 1;
+        }
+        // Add $2 if the user wants chocolate
+        if (hasChocolate) {
+            basePrice += 2;
+        }
+        // Calculate the total price per order
+        return numberOfCoffees * basePrice;
     }
 
     /**
@@ -61,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method is called when the plus button is clicked.
+     *
+     * @param view
      */
     public void incrementQuantity(View view) {
         numberOfCoffees++;
@@ -90,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Displays the given text on the screen.
+     * Displays the given text on the screen
      *
      * @param message
      */
