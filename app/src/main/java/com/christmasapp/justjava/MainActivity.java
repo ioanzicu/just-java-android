@@ -3,6 +3,7 @@ package com.christmasapp.justjava;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,8 +26,11 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+        EditText inputLayout = findViewById(R.id.name_input);
+        String name = inputLayout.getText().toString();
+
         int price = calculatePrice();
-        String orderSummary = createOrderSummary(price);
+        String orderSummary = createOrderSummary(name, price);
         displayMessage(orderSummary);
     }
 
@@ -43,10 +47,11 @@ public class MainActivity extends AppCompatActivity {
      * Create order summary message based on the price.
      *
      * @param price of the order
+     * @param name
      * @return text summary
      */
-    private String createOrderSummary(int price) {
-        return "Name: Ioan Zicu" +
+    private String createOrderSummary(String name, int price) {
+        return "Name: " + name +
                 "\nAdd whipped cream? " + hasWhippedCream +
                 "\nAdd chocolate? " + hasChocolate +
                 "\nQuantity: " + numberOfCoffees +
@@ -64,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method is called when the minus button is clicked.
+     *
      * @param view
      */
     public void decrementQuantity(View view) {
@@ -75,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Displays the given quantity value on the screen.
+     *
      * @param number
      */
     private void displayQuantity(int number) {
@@ -84,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Displays the given text on the screen.
+     *
      * @param message
      */
     private void displayMessage(String message) {
@@ -93,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Add Whipped Cream
+     *
      * @param view
      */
     public void addWhippedCream(View view) {
@@ -101,10 +110,11 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Add Chocolate
+     *
      * @param view
      */
 
     public void addChocolate(View view) {
-        hasChocolate =((CheckBox) view).isChecked();
+        hasChocolate = ((CheckBox) view).isChecked();
     }
 }
