@@ -1,5 +1,7 @@
 package com.christmasapp.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -13,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private static int numberOfCoffees = 99;
+    private static int numberOfCoffees = 2;
     private static boolean hasWhippedCream = false;
     private static boolean hasChocolate = false;
 
@@ -31,8 +33,23 @@ public class MainActivity extends AppCompatActivity {
         String name = inputLayout.getText().toString();
 
         int price = calculatePrice();
+
         String orderSummary = createOrderSummary(name, price);
-        displayMessage(orderSummary);
+        String emailSubject = "JustJava order for " + name;
+
+        // Create an Intent object type ACTION_SENDTO
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setType("text/html");
+        // mailto: specify that only email apps should handle this intent
+        intent.setData(Uri.parse("mailto:"));
+        // Email subject
+        intent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
+        // Email body
+        intent.putExtra(Intent.EXTRA_TEXT, orderSummary);
+        // Check if there is an activity on device to handle the intent
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     /**
@@ -113,16 +130,6 @@ public class MainActivity extends AppCompatActivity {
     private void displayQuantity(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
-    }
-
-    /**
-     * Displays the given text on the screen
-     *
-     * @param message
-     */
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
     }
 
     /**
