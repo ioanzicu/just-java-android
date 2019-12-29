@@ -68,4 +68,5 @@
     <string name="order_summary_email_subject">Java, Juste Java pour
         <xliff:g id="name" example="Amy">%s</xliff:g>
     </string>
+    <string name="app_name">Just Java</string>
 </resources>
