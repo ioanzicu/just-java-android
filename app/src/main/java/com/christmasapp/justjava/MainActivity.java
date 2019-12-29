@@ -2,6 +2,7 @@ package com.christmasapp.justjava;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     private static int numberOfCoffees = 2;
+    private static boolean hasWhippedCream = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +40,14 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Create order summary message based on the price.
+     *
      * @param price of the order
      * @return text summary
      */
     private String createOrderSummary(int price) {
-        return "Name: Ioan\n" +
-                "Quantity: " + numberOfCoffees +
+        return "Name: Ioan Zicu" +
+                "\nAdd whipped cream? " + hasWhippedCream +
+                "\nQuantity: " + numberOfCoffees +
                 "\nTotal: $" + price +
                 "\nThank you!";
     }
@@ -80,5 +84,18 @@ public class MainActivity extends AppCompatActivity {
     private void displayMessage(String message) {
         TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setText(message);
+    }
+
+    /**
+     * Add Whipped Cream
+     * @param view
+     */
+    public void addWhippedCream(View view) {
+        boolean checked = ((CheckBox) view).isChecked();
+        if (checked) {
+            hasWhippedCream = true;
+        } else {
+            hasWhippedCream = false;
+        }
     }
 }
