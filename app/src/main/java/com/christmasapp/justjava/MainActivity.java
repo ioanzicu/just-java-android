@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static int numberOfCoffees = 2;
     private static boolean hasWhippedCream = false;
+    private static boolean hasChocolate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private String createOrderSummary(int price) {
         return "Name: Ioan Zicu" +
                 "\nAdd whipped cream? " + hasWhippedCream +
+                "\nAdd chocolate? " + hasChocolate +
                 "\nQuantity: " + numberOfCoffees +
                 "\nTotal: $" + price +
                 "\nThank you!";
@@ -95,5 +97,14 @@ public class MainActivity extends AppCompatActivity {
      */
     public void addWhippedCream(View view) {
         hasWhippedCream = ((CheckBox) view).isChecked();
+    }
+
+    /**
+     * Add Chocolate
+     * @param view
+     */
+
+    public void addChocolate(View view) {
+        hasChocolate =((CheckBox) view).isChecked();
     }
 }
